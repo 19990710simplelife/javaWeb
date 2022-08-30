@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><!-- 以上文档声明，versino:版本，encoding 编码格式：文档内容编码和文件本身编码必须保持一致-->
+<contacts>
+    <linkman id="1">
+        <name>小狼</name>
+        <email>wolf@wolfcode.cn</email>
+        <address>广州</address>
+        <group>Java学院</group>
+    </linkman>
+    <linkman id="2">
+        <name>小码</name>
+        <email>horse@520it.com</email>
+        <address>广州</address>
+        <group>Java学院</group>
+    </linkman>
+    <linkman>
+        <name>张三</name>
+        <email>17565481@qq.com</email>
+        <address>地球</address>
+        <group>实验室</group>
+    </linkman>
+    <linkman>
+        <name>李四</name>
+        <email>dasikhdoiu@168.com</email>
+        <address>外太空</address>
+        <group>外星人</group>
+    </linkman>
+</contacts>
