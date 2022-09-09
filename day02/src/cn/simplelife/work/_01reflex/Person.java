@@ -44,6 +44,10 @@ public class Person {
         this.age = age;
     }
 
+    private void doWork(String name) {
+        System.out.println(name + "上班了");
+    }
+
     @Override
     public String toString() {
         return "Person{" +
