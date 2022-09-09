@@ -48,6 +48,14 @@ public class Person {
         System.out.println(name + "上班了");
     }
 
+    public void eat() {
+        System.out.println("吃饭了！");
+    }
+
+    public static void walk(String name) {
+        System.out.println(name + "跑路了！");
+    }
+
     @Override
     public String toString() {
         return "Person{" +
