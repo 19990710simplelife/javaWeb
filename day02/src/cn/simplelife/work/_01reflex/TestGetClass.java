@@ -23,5 +23,12 @@ class TestGetClass {
         Class<? extends Person> aClass = person.getClass();
         System.out.println("aClass = " + aClass);
 
+        // 3、通过类型来获取字节码对象
+        Class<Person> personClass = Person.class;
+        System.out.println("personClass = " + personClass);
+        int[] arr = new int[1];
+        int[][] arr2 = new int[1][1];
+        System.out.println(arr.getClass());
+        System.out.println(arr2.getClass());
     }
 }
