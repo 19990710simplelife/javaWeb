@@ -38,7 +38,7 @@ public class TestMapToBean {
             for (PropertyDescriptor descriptor : propertyDescriptors) {
                 String key = descriptor.getName();
                 Object value = map.get(key);
-                descriptor.getWriteMethod().invoke(o,value);
+                descriptor.getWriteMethod().invoke(o, value);
             }
             System.out.println(o);
         } catch (ClassNotFoundException | IntrospectionException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
