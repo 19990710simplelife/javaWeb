@@ -14,6 +14,7 @@ import java.util.Properties;
  */
 
 public class JDBCUtils {
+    private JDBCUtils(){}
     private static Properties properties = new Properties();
 
     static {
