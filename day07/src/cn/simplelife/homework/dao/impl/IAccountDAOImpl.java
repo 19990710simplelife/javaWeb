@@ -22,11 +22,14 @@ public class IAccountDAOImpl implements IAccountDAO {
     @Override
     public void transfer(Account sourceAccount, Account targetAccount, BigDecimal money) {
         // 1、获取数据库链接、判断源账户是否有足够的金额
-        Connection connection = JDBCUtils.getConnection();
+        Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String sql = "SELECT * FROM account WHERE id=? AND balance>1000";
         try {
+            connection = JDBCUtils.getConnection();
+            // 关闭事务的自动提交
+            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, sourceAccount.getId());
             resultSet = preparedStatement.executeQuery();
@@ -39,16 +42,24 @@ public class IAccountDAOImpl implements IAccountDAO {
                 preparedStatement.setBigDecimal(1, money);
                 preparedStatement.setLong(2, sourceAccount.getId());
                 preparedStatement.executeUpdate();
-
+                // 模拟异常
+//                int a = 1 / 0;
                 // 账户加钱
                 sql = "UPDATE account SET balance=balance+? WHERE id=?";
                 preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setBigDecimal(1, money);
                 preparedStatement.setLong(2, targetAccount.getId());
                 preparedStatement.executeUpdate();
+                // 手动提交事务
+                connection.commit();
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         } finally {
             JDBCUtils.close(connection, preparedStatement, resultSet);
         }
