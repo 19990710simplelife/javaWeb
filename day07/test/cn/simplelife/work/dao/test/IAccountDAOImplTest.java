@@ -3,9 +3,11 @@ package cn.simplelife.work.dao.test;
 import cn.simplelife.work.dao.IAccountDAO;
 import cn.simplelife.work.dao.Impl.IAccountDAOImpl;
 import cn.simplelife.work.domain.Account;
+import cn.simplelife.work.utils.DataSourceUtils;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
 
 import static org.junit.Assert.*;
 
@@ -27,5 +29,11 @@ public class IAccountDAOImplTest {
         sourceAccount.setId(1L);
         targetAccount.setId(2L);
         accountDAO.transfer(sourceAccount, targetAccount, new BigDecimal("1000"));
+    }
+
+    @Test
+    public void testDruidDatasource() {
+        Connection connection = DataSourceUtils.getConnection();
+        System.out.println("connection = " + connection);
     }
 }
