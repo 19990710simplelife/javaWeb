@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties"/>
+    <typeAliases>
+        <!--<typeAlias type="cn.simplelife.work.domain.User" alias="User"/>-->
+        <package name="cn.simplelife.work.domain"/>
+    </typeAliases>
+    <!--配置环境：
+    企业项目所在环境：
+    开发环境（程序员自己的数据库环境）
+    测试环境：测试工程师使用的环境
+    生产环境：项目用户网站的真实运行环境
+    default：选择使用子标签中的环境
+    -->
+    <environments default="dev">
+        <!--配置使用的环境-->
+        <environment id="dev">
+            <!--配置事务管理
+            type:JDBC|MANAGED
+            -->
+            <transactionManager type="JDBC"/>
+            <!--配置连接池类型-->
+            <dataSource type="POOLED">
+                <!--配置四要素-->
+                <property name="driver" value="${driverClassName}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="cn/simplelife/work/mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>
