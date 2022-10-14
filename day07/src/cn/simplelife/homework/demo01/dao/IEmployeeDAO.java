@@ -49,4 +49,11 @@ public interface IEmployeeDAO {
      * @return 返回一个员工信息集合
      */
     List<Employee> selectAll();
+
+    /**
+     * 用户登录
+     *
+     * @param employee 要登录的用户信息
+     */
+    void login(Employee employee);
 }

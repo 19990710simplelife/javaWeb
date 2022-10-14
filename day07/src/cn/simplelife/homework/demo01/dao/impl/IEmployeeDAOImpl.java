@@ -138,4 +138,29 @@ public class IEmployeeDAOImpl implements IEmployeeDAO {
         }
         return employeeList;
     }
+
+    @Override
+    public void login(Employee employee) {
+        Connection connection = DruidDatasourceUtils.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            if (connection != null) {
+                String sql = "SELECT * FROM t_employee WHERE username=? AND password=?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, employee.getUsername());
+                preparedStatement.setString(2, employee.getPassword());
+                resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                    System.out.println("登录成功！");
+                } else {
+                    System.out.println("用户名或密码错误！请重新登录");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DruidDatasourceUtils.close(connection, preparedStatement, resultSet);
+        }
+    }
 }

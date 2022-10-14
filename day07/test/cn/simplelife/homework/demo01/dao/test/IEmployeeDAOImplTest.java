@@ -5,6 +5,8 @@ import cn.simplelife.homework.demo01.dao.impl.IEmployeeDAOImpl;
 import cn.simplelife.homework.demo01.domain.Employee;
 import org.junit.Test;
 
+import java.util.Scanner;
+
 import static org.junit.Assert.*;
 
 /**
