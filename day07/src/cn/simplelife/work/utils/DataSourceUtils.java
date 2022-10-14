@@ -54,7 +54,7 @@ public class DataSourceUtils {
         return null;
     }
 
-    public void close(Connection connection, Statement statement, ResultSet resultSet){
+    public static void close(Connection connection, Statement statement, ResultSet resultSet){
         if (resultSet!=null){
             try {
                 resultSet.close();
