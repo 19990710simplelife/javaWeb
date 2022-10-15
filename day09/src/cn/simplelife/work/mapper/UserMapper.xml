@@ -5,7 +5,7 @@
 <mapper namespace="cn.simplelife.work.dao.IUserDAO">
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        INSERT INTO user(name, age, salary)
+        INSERT INTO user (name,age,salary)
         VALUES (#{name}, #{age}, #{salary})
     </insert>
 
