@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="hamcrest-core-1.3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/day09/lib/hamcrest-core-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/day09/lib/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/day09/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/day09/lib/lombok-1.18.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/day09/lib/mybatis-3.4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/day09/lib/mysql-connector-java-5.1.7-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/day09/lib/slf4j-api-1.7.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/day09/lib/slf4j-log4j12-1.7.25.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
