@@ -16,6 +16,12 @@ import java.io.IOException;
  */
 
 public class ServletConfigServlet extends HttpServlet {
+
+    @Override
+    public void init() {
+        System.out.println("初始化代码！！！！！！！！");
+    }
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletConfig servletConfig = getServletConfig();
