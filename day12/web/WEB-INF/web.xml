@@ -8,9 +8,22 @@
         <servlet-name>HelloServlet</servlet-name>
         <servlet-class>cn.simplelife.work._01hello.HelloServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletConfigServlet</servlet-name>
+        <servlet-class>cn.simplelife.work._05servletconfig.ServletConfigServlet</servlet-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </servlet>
     <!--配置浏览器访问servlet的资源路径名称-->
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
         <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ServletConfigServlet</servlet-name>
+        <url-pattern>/ServletConfigServlet</url-pattern>
     </servlet-mapping>
 </web-app>
