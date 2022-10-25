@@ -8,31 +8,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
- * @ClassName SecondServlet
+ * @ClassName FirstServlet
  * @Description
  * @Author simplelife
- * @Date 2022/10/25 11:37
+ * @Date 2022/10/25 11:27
  * @Version 1.0
  */
 
-@WebServlet(value = "/scope/second")
-public class SecondServlet extends HttpServlet {
+@WebServlet(value = "/scope/firstOption")
+public class FirstServletOption extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=utf-8");
-        PrintWriter writer = resp.getWriter();
-        Object msg = req.getAttribute("msg");
-
+        // 从请求作用域存入数据
+        req.setAttribute("msg", "req.setAttribute");
+        // 从会话作用域存入数据
         HttpSession session = req.getSession();
-        Object sessionAttribute = session.getAttribute("msg");
-
+        session.setAttribute("msg", "req.getSession()");
+        // 从请求作用域存入数据
         ServletContext servletContext = req.getServletContext();
-        Object servletContextAttribute = servletContext.getAttribute("msg");
-        writer.println(msg + "</br>");
-        writer.println(sessionAttribute + "</br>");
-        writer.println(servletContextAttribute + "</br>");
+        servletContext.setAttribute("msg", "req.getServletContext()");
+        // 跳转到第二个servlet
+        req.getRequestDispatcher("/scope/second").forward(req, resp);
     }
 }
