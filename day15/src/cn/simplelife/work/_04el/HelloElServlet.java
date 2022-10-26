@@ -23,7 +23,6 @@ public class HelloElServlet extends HttpServlet {
         req.setAttribute("msg", "你好！大傻子！");
         req.getSession().setAttribute("msg", "你好，大傻逼！");
         req.getServletContext().setAttribute("msg", "你好，二货");
-
         req.getRequestDispatcher("/el/hello.jsp").forward(req,resp);
     }
 }

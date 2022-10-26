@@ -28,18 +28,18 @@
     <th>操作</th>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.users}" var="user">
-        <tr>
-            <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.age}</td>
-            <td>${user.salary}</td>
-            <td>
+    <tr>
+        <td>${requestScope.users.id}</td>
+        <td>${requestScope.users.name}</td>
+        <td>${requestScope.users.age}</td>
+        <td>${requestScope.users.salary}</td>
+        <td>
+            <c:if test="${requestScope.users.id!=null}">
                 <a href="${pageContext.request.contextPath}/employee/updateUser?id=${user.id}">修改</a>
                 <a href="${pageContext.request.contextPath}/user/delete?id=${user.id}">删除</a>
-            </td>
-        </tr>
-    </c:forEach>
+            </c:if>
+        </td>
+    </tr>
     </tbody>
 </table>
 </body>
