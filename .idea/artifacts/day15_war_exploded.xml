@@ -7,6 +7,12 @@
         <element id="directory" name="classes">
           <element id="module-output" name="day15" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="slf4j-log4j12-1.7.25 (2)" />
+          <element id="library" level="project" name="taglibs-standard-spec-1.2.1" />
+          <element id="library" level="project" name="taglibs-standard-impl-1.2.1" />
+          <element id="file-copy" path="$PROJECT_DIR$/day15/lib/lombok-1.18.16.jar" />
+        </element>
       </element>
     </root>
   </artifact>

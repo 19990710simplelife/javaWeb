@@ -14,7 +14,7 @@
 <body>
 <label>
     <form action="${pageContext.request.contextPath}/user/search" method="post">
-        <input type="text" name="key" placeholder="请输入要查询员工的id">
+        <input type="text" name="key" placeholder="请输入要查询员工的id" minlength="1">
         <input type="submit" value="查询"/>
     </form>
 </label>
