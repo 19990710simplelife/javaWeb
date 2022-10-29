@@ -1,9 +1,9 @@
-package cn.simplelife.web.servlet;
+package cn.simplelife.work._03demo.web.servlet;
 
-import cn.simplelife.dao.IProductDAO;
-import cn.simplelife.dao.impl.IProductDAOImpl;
-import cn.simplelife.domain.Product;
-import cn.simplelife.utils.StringUtils;
+import cn.simplelife.work._03demo.dao.IProductDAO;
+import cn.simplelife.work._03demo.dao.impl.IProductDAOImpl;
+import cn.simplelife.work._03demo.domain.Product;
+import cn.simplelife.work._03demo.uitils.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,16 +18,24 @@ import java.util.List;
  * @ClassName ProductServlet
  * @Description
  * @Author simplelife
- * @Date 2022/10/26 22:05
+ * @Date 2022/10/28 20:11
  * @Version 1.0
  */
 @WebServlet(value = "/product")
 public class ProductServlet extends HttpServlet {
+
     private IProductDAO iProductDAO = new IProductDAOImpl();
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
+        Object usersInSession = req.getSession().getAttribute("USERS_IN_SESSION");
+        // 判断用户是否登录
+        if (usersInSession == null) {
+            resp.sendRedirect("/login.jsp");
+            return;
+        }
+        // 用户已经登录
         String cmd = req.getParameter("cmd");
         if ("delete".equals(cmd)) {
             delete(req, resp);
@@ -42,15 +50,16 @@ public class ProductServlet extends HttpServlet {
         } else {
             list(req, resp);
         }
+
     }
 
-    protected void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 2、调用dao的方法查询数据
         List<Product> products = iProductDAO.selectAll();
         // 3、将数据设置到作用域
         req.setAttribute("products", products);
         // 4、进行跳转
-        req.getRequestDispatcher("/WEB-INF/view/product/list.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/list.jsp").forward(req, resp);
     }
 
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -69,7 +78,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     protected void input(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/product/input.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/input.jsp").forward(req, resp);
     }
 
     protected void save(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -121,7 +130,7 @@ public class ProductServlet extends HttpServlet {
             Product product = iProductDAO.selectOne(newId);
             req.setAttribute("productDate", product);
         }
-        req.getRequestDispatcher("/WEB-INF/view/product/edit.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/edit.jsp").forward(req, resp);
     }
 
     protected void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
