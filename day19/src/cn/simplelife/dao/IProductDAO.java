@@ -64,5 +64,5 @@ public interface IProductDAO {
      *
      * @return 返回数据的总条数
      */
-    int selectForCount();
+    int selectForCount(QueryObject queryObject);
 }

@@ -1,5 +1,6 @@
 package cn.simplelife.test;
 
+import cn.simplelife.query.ProductQueryByConditionParams;
 import cn.simplelife.query.QueryObject;
 import cn.simplelife.results.PageResult;
 import cn.simplelife.service.IProductService;
@@ -21,7 +22,12 @@ public class IProductServiceTest {
 
     @Test
     public void query() {
-        QueryObject queryObject = new QueryObject(2, 3);
+        ProductQueryByConditionParams queryObject = new ProductQueryByConditionParams();
+        queryObject.setCurrentPage(1);
+        queryObject.setPageSize(3);
+        queryObject.setProductName("M");
+        queryObject.setMinSalePrice(100.0);
+        queryObject.setMaxSalePrice(120.0);
         PageResult query = iProductService.query(queryObject);
         query.getData().forEach(System.out::println);
         System.out.println("当前页 = " + query.getCurrentPage());

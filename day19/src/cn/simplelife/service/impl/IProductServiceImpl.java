@@ -20,7 +20,6 @@ import java.util.List;
 
 public class IProductServiceImpl implements IProductService {
     private IProductDAO dao = new IProductDAOImpl();
-
     @Override
     public void insert(Product product) {
         dao.insert(product);
@@ -52,7 +51,7 @@ public class IProductServiceImpl implements IProductService {
     @Override
     public PageResult query(QueryObject queryObject) {
         // 1、查询满足条件的总数
-        int totalCount = dao.selectForCount();
+        int totalCount = dao.selectForCount(queryObject);
         // 2、获取满足条件的结果条数
         if (totalCount == 0) {
             return new PageResult(queryObject.getCurrentPage(), queryObject.getPageSize());

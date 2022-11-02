@@ -3,6 +3,7 @@ package cn.simplelife.web.servlet;
 import cn.simplelife.dao.IProductDAO;
 import cn.simplelife.dao.impl.IProductDAOImpl;
 import cn.simplelife.domain.Product;
+import cn.simplelife.query.ProductQueryByConditionParams;
 import cn.simplelife.query.QueryObject;
 import cn.simplelife.results.PageResult;
 import cn.simplelife.service.IProductService;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.management.MonitorInfo;
 import java.util.List;
 
 
@@ -60,10 +62,11 @@ public class ProductServlet extends HttpServlet {
 
     private void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        QueryObject queryObject = new QueryObject();
+        ProductQueryByConditionParams queryObject = new ProductQueryByConditionParams();
         reqToQueryParams(req, queryObject);
         PageResult result = iProductService.query(queryObject);
-        req.setAttribute("result",result);
+        req.setAttribute("result", result);
+        req.setAttribute("queryObject",queryObject);
         // 4、进行跳转
         req.getRequestDispatcher("/WEB-INF/view/list.jsp").forward(req, resp);
     }
@@ -129,15 +132,26 @@ public class ProductServlet extends HttpServlet {
         product.setBrand(brand);
     }
 
-    private void reqToQueryParams(HttpServletRequest req, QueryObject queryObject) {
+    private void reqToQueryParams(HttpServletRequest req, ProductQueryByConditionParams queryObject) {
         String currentPage = req.getParameter("currentPage");
         String pageSize = req.getParameter("pageSize");
-
+        String productName = req.getParameter("productName");
+        String minSalePrice = req.getParameter("minSalePrice");
+        String maxSalePrice = req.getParameter("maxSalePrice");
+        String keyWord = req.getParameter("keyWord");
+        queryObject.setKeyWord(keyWord);
+        queryObject.setProductName(productName);
         if (StringUtils.hasLength(currentPage)) {
             queryObject.setCurrentPage(Integer.valueOf(currentPage));
         }
         if (StringUtils.hasLength(pageSize)) {
             queryObject.setPageSize(Integer.valueOf(pageSize));
+        }
+        if (StringUtils.hasLength(minSalePrice)) {
+            queryObject.setMinSalePrice(Double.valueOf(minSalePrice));
+        }
+        if (StringUtils.hasLength(maxSalePrice)) {
+            queryObject.setMaxSalePrice(Double.valueOf(maxSalePrice));
         }
     }
 

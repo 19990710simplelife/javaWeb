@@ -71,9 +71,9 @@ public class IProductDAOImpl implements IProductDAO {
     }
 
     @Override
-    public int selectForCount() {
+    public int selectForCount(QueryObject queryObject) {
         SqlSession sqlSession = MyBatisUtils.openSession();
-        int totalCount = sqlSession.selectOne("cn.simplelife.dao.IProductDAO.selectForCount");
+        int totalCount = sqlSession.selectOne("cn.simplelife.dao.IProductDAO.selectForCount",queryObject);
         sqlSession.commit();
         sqlSession.close();
         return totalCount;

@@ -3,6 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.simplelife.dao.IProductDAO">
+    <sql id="sql_where">
+        <where>
+            <if test="keyWord!=null and keyWord!=''">
+                (productName LIKE concat('%',#{keyWord},'%') OR brand LIKE concat('%',#{keyWord},'%'))
+            </if>
+            <if test="productName!=null and productName !=''">
+                AND productName LIKE concat('%',#{productName},'%')
+            </if>
+            <if test="minSalePrice!=null">
+                AND salePrice &gt;= #{minSalePrice}
+            </if>
+            <if test="maxSalePrice!=null">
+                AND salePrice &lt;= #{maxSalePrice}
+            </if>
+        </where>
+    </sql>
+
     <insert id="insert">
         INSERT INTO product(productName, dirId, salePrice, supplier, brand, cutoff, costPrice)
         VALUES (#{productName}, #{dirId}, #{salePrice}, #{supplier}, #{brand}, #{cutoff}, #{costPrice})
@@ -40,11 +57,13 @@
     <select id="selectForList" resultType="cn.simplelife.domain.Product">
         SELECT *
         FROM product
+        <include refid="sql_where"/>
         LIMIT #{beginIndex},#{pageSize}
     </select>
 
     <select id="selectForCount" resultType="int">
         SELECT COUNT(*)
-        FROM product;
+        FROM product
+        <include refid="sql_where"/>
     </select>
 </mapper>
