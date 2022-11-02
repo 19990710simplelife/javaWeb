@@ -9,6 +9,8 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="taglibs-standard-spec-1.2.1 (2)" />
+          <element id="file-copy" path="$PROJECT_DIR$/day15/lib/lombok-1.18.16.jar" />
+          <element id="library" level="project" name="log4j-1.2.17 (2)" />
         </element>
       </element>
     </root>

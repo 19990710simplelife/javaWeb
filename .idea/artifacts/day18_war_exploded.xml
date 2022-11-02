@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="day18" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="log4j-1.2.17 (3)" />
+          <element id="file-copy" path="$PROJECT_DIR$/day18/web/WEB-INF/lib/lombok-1.18.16.jar" />
+        </element>
       </element>
     </root>
   </artifact>

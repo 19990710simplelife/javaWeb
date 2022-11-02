@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+<span>${requestScope.error}</span>
 <form action="${pageContext.request.contextPath}/register" method="post" enctype="multipart/form-data">
     <p>
         <label>
@@ -23,7 +24,11 @@
             头像： <input type="file" name="headImg">
         </label>
     </p>
-
+    <p>
+        <label>
+            头像： <input type="file" name="headImg2">
+        </label>
+    </p>
     <p>
         <label>
             <input type="submit" value="注册">

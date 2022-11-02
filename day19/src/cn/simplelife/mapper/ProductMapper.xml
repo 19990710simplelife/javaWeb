@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.simplelife.dao.IProductDAO">
+    <insert id="insert">
+        INSERT INTO product(productName, dirId, salePrice, supplier, brand, cutoff, costPrice)
+        VALUES (#{productName}, #{dirId}, #{salePrice}, #{supplier}, #{brand}, #{cutoff}, #{costPrice})
+    </insert>
+
+    <delete id="delete">
+        DELETE
+        FROM product
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update">
+        UPDATE product
+        SET productName=#{productName},
+            dirId=#{dirId},
+            salePrice=#{salePrice},
+            supplier=#{supplier},
+            brand=#{brand},
+            cutoff=#{cutoff},
+            costPrice=#{costPrice}
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectOnes" resultType="cn.simplelife.domain.Product">
+        SELECT *
+        FROM product
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectAlls" resultType="cn.simplelife.domain.Product">
+        SELECT *
+        FROM product
+    </select>
+
+    <select id="selectForList" resultType="cn.simplelife.domain.Product">
+        SELECT *
+        FROM product
+        LIMIT #{beginIndex},#{pageSize}
+    </select>
+
+    <select id="selectForCount" resultType="int">
+        SELECT COUNT(*)
+        FROM product;
+    </select>
+</mapper>
